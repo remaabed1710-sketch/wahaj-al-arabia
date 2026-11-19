@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#123d32">
+    <meta name="description" content="وهج العربية، رحلة تفاعلية للاحتفاء بجمال اللغة العربية">
+    <title>وهج العربية | لغتنا هويتنا</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .poem-explanation { margin-top: 28px; }
+
+        .explanation-heading {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        #explanationContent { padding: 22px 0 8px; }
+
+        .analysis-intro,
+        .analysis-conclusion {
+            padding: 22px;
+            margin: 18px 0;
+            border-radius: 16px;
+            background: rgba(18, 61, 50, .07);
+            border: 1px solid rgba(18, 61, 50, .16);
+        }
+
+        .analysis-intro h3,
+        .analysis-conclusion h3 {
+            margin: 8px 0 12px;
+            color: #123d32;
+        }
+
+        .analysis-label {
+            display: inline-block;
+            color: #8a682b;
+            font-weight: 800;
+            font-size: .88rem;
+            margin-bottom: 8px;
+        }
+
+        .analysis-card {
+            padding: 18px 20px;
+            margin: 16px 0;
+            border-radius: 14px;
+            background: rgba(255,255,255,.72);
+            border: 1px solid rgba(138,104,43,.25);
+            box-shadow: 0 5px 18px rgba(0,0,0,.035);
+        }
+
+        .analysis-card p {
+            line-height: 1.95;
+            margin: 8px 0;
+        }
+
+        .poem-quote {
+            color: #123d32;
+            font-family: 'Amiri', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 2;
+        }
+
+        .explanation-part {
+            padding: 18px 20px;
+            margin: 16px 0;
+            border-right: 3px solid #b08b45;
+            background: rgba(18,61,50,.035);
+            border-radius: 10px;
+        }
+
+        .explanation-part h3 {
+            color: #123d32;
+            margin: 0 0 10px;
+        }
+
+        .explanation-part p,
+        .explanation-part li {
+            line-height: 2;
+            margin-bottom: 8px;
+        }
+
+        .explanation-part ul { padding-right: 22px; }
+
+        .vocabulary {
+            display: grid;
+            grid-template-columns: minmax(100px, .7fr) 2fr;
+            gap: 8px 16px;
+            line-height: 1.8;
+        }
+
+        .vocabulary dt {
+            color: #8a682b;
+            font-weight: 800;
+        }
+
+        .vocabulary dd { margin: 0; }
+
+        .editorial-note {
+            padding: 14px 18px;
+            margin-top: 18px;
+            border-radius: 10px;
+            background: rgba(176,139,69,.10);
+            color: #66522d;
+            line-height: 1.9;
+            font-size: .92rem;
+        }
+
+        @media (max-width: 600px) {
+            .analysis-card,
+            .explanation-part,
+            .analysis-intro,
+            .analysis-conclusion {
+                padding: 15px;
+            }
+
+            .vocabulary {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+
+            .vocabulary dd { margin-bottom: 10px; }
+            .poem-quote { font-size: 1.18rem; }
+        }
+    </style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&family=Reem+Kufi:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="#" class="logo" data-page="home">
+            <span class="logo-symbol">و</span>
+            <span>وهج العربية</span>
+        </a>
+
+       <nav class="navigation">
+    <a href="#" data-page="home" class="active">الرئيسية</a>
+    <a href="#" data-page="story">حكاية العربية</a>
+    <a href="#" data-page="poetry">ديوان الشعر</a>
+    <a href="#" data-page="arabicChallenge">تحدّي العربية</a>
+    <a href="#" data-page="art">مرسم الحروف</a>
+</nav>
+
+        <button class="menu-button" id="menuButton" aria-label="فتح القائمة">☰</button>
+    </header>
+
+    <main id="app">
+
+        <section class="hero page active" id="home">
+            <div class="hero-decoration">۞</div>
+
+            <div class="hero-content">
+                <span class="eyebrow">رحلة في حضارة الحرف</span>
+
+                <h1>
+                    لغتنا.. <span>هويةٌ</span><br>
+                    وحضارةٌ وجمال
+                </h1>
+
+                <p>
+                    أهلًا بك في رحلةٍ بين الحروف، حيث للكلمات روح،
+                    وللأشعار حكايات، وللعربية وهج لا ينطفئ.
+                </p>
+
+                <button class="primary-button" data-go="story">
+                    ابدأ رحلتك <span>←</span>
+                </button>
+            </div>
+
+            <div class="hero-art">
+                <div class="art-circle">
+                    <span>ض</span>
+                    <div class="art-caption">لغة الضاد</div>
+                </div>
+            </div>
+
+            <div class="hero-bottom">بالحرف نكتب حضارة، وبالعربية نصنع أثرًا</div>
+        </section>
+
+        <section class="page content-section" id="story">
+
+    <div class="section-heading">
+        <span class="eyebrow">حكاية وهوية</span>
+        <h2>حكاية اللغة العربية</h2>
+        <p>من أعماق التاريخ إلى آفاق المستقبل، رحلة لغةٍ صنعت حضارة وحفظت هوية.</p>
+    </div>
+
+    <div class="story-intro">
+        <div class="story-intro-decoration">ض</div>
+        <span class="story-label">بداية الحكاية</span>
+        <h3>لغةٌ لم تكن يومًا مجرد كلمات</h3>
+        <p>
+            اللغة العربية ليست وسيلةً للتواصل فحسب، بل هي وعاءٌ للذاكرة،
+            وجسرٌ يصل الماضي بالحاضر، ومساحةٌ واسعة للتعبير عن الأفكار
+            والمشاعر. حملت عبر القرون قصص العرب وأشعارهم وعلومهم،
+            وظلت شاهدةً على حضارةٍ تركت أثرها في تاريخ الإنسانية.
+        </p>
+    </div>
+
+    <div class="story-timeline">
+
+        <article class="story-chapter">
+            <div class="story-number">01</div>
+            <div class="story-chapter-content">
+                <span class="story-label">الجذور والبدايات</span>
+                <h3>من أين جاءت اللغة العربية؟</h3>
+                <p>
+                    تنتمي اللغة العربية إلى أسرة اللغات السامية، وهي أسرة
+                    لغوية تضم لغاتٍ قديمة وحديثة. وقد تشكلت العربية عبر
+                    مراحل تاريخية طويلة، وتطورت في بيئات متعددة من شبه
+                    الجزيرة العربية.
+                </p>
+                <p>
+                    وصلت إلينا شواهد ونقوش عربية قديمة تكشف عن تطور
+                    الكتابة واللغة، كما حفظ الشعر العربي جانبًا مهمًا
+                    من مفردات العرب وأساليب تعبيرهم وحياتهم.
+                </p>
+                <div class="story-highlight">
+                    <strong>هل تعلم؟</strong>
+                    تعد النقوش والكتابات القديمة من أهم المصادر التي
+                    تساعد الباحثين على دراسة تاريخ اللغة وتطورها.
+                </div>
+            </div>
+        </article>
+
+        <article class="story-chapter">
+            <div class="story-number">02</div>
+            <div class="story-chapter-content">
+                <span class="story-label">سر التسمية</span>
+                <h3>لماذا سُمّيت لغة الضاد؟</h3>
+                <p>
+                    اشتهرت اللغة العربية بلقب «لغة الضاد»؛ لأن حرف الضاد
+                    من الأصوات المميزة فيها، وقد اعتنى علماء العربية
+                    بوصفه وبيان طريقة نطقه وصفاته.
+                </p>
+                <p>
+                    وأصبح هذا اللقب رمزًا للاعتزاز باللغة العربية،
+                    ودلالةً على خصوصيتها الصوتية والتراثية بين اللغات.
+                </p>
+                <div class="story-letter">
+                    <span>ض</span>
+                    <p>حرفٌ واحد يحمل لقب لغةٍ كاملة.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="story-chapter">
+            <div class="story-number">03</div>
+            <div class="story-chapter-content">
+                <span class="story-label">محطة عظيمة في التاريخ</span>
+                <h3>العربية والقرآن الكريم</h3>
+                <p>
+                    نزل القرآن الكريم باللغة العربية، فكان ذلك محطةً
+                    عظيمة في تاريخها؛ إذ ازدادت عناية المسلمين بتعلمها
+                    وفهم مفرداتها وقواعدها وأساليبها.
+                </p>
+                <p>
+                    ونشأت علومٌ كثيرة لخدمة النص القرآني، مثل النحو
+                    والصرف والبلاغة والتفسير، وأسهم ذلك في تدوين اللغة
+                    وتقعيد قواعدها وحفظ تراثها.
+                </p>
+                <div class="story-highlight">
+                    <strong>محطة مضيئة:</strong>
+                    ارتبطت العربية بالقرآن الكريم ارتباطًا وثيقًا،
+                    وأصبحت معرفة اللغة طريقًا لفهم معانيه وتدبر آياته.
+                </div>
+            </div>
+        </article>
+
+        <article class="story-chapter">
+            <div class="story-number">04</div>
+            <div class="story-chapter-content">
+                <span class="story-label">رحلة عبر الزمن</span>
+                <h3>العربية في عصورها المختلفة</h3>
+
+                <div class="era-card">
+                    <h4>العصر الجاهلي</h4>
+                    <p>
+                        ازدهر الشعر والخطابة، وكانت القصائد وسيلةً
+                        للتعبير عن الفخر والحكمة والحب ووصف الحياة.
+                        وحفظ الشعر كثيرًا من ألفاظ العربية وأساليبها.
+                    </p>
+                </div>
+
+                <div class="era-card">
+                    <h4>العصر الإسلامي</h4>
+                    <p>
+                        اتسع انتشار العربية مع انتشار الإسلام،
+                        وازدادت الحاجة إلى تعلمها وفهم القرآن الكريم
+                        والحديث الشريف.
+                    </p>
+                </div>
+
+                <div class="era-card">
+                    <h4>العصر الأموي</h4>
+                    <p>
+                        أصبحت العربية لغة الإدارة والدواوين في الدولة
+                        الإسلامية، وتعزز حضورها في مناطق واسعة.
+                    </p>
+                </div>
+
+                <div class="era-card">
+                    <h4>العصر العباسي</h4>
+                    <p>
+                        شهدت العربية ازدهارًا علميًا وأدبيًا كبيرًا،
+                        وبرز الشعراء والعلماء والمترجمون، وأصبحت لغةً
+                        مهمة في نقل المعارف والتأليف والبحث.
+                    </p>
+                </div>
+
+                <div class="era-card">
+                    <h4>العصر الحديث</h4>
+                    <p>
+                        واصلت العربية حضورها في التعليم والإعلام
+                        والأدب والعلوم والتقنية، وظهرت جهودٌ متجددة
+                        لتطوير المحتوى العربي وتعزيز استخدامه.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <article class="story-chapter">
+            <div class="story-number">05</div>
+            <div class="story-chapter-content">
+                <span class="story-label">سحر البيان</span>
+                <h3>ما الذي يجعل العربية جميلة؟</h3>
+                <p>
+                    تمتاز العربية بثراء مفرداتها وتنوع أساليبها،
+                    وقدرتها على التعبير عن المعاني الدقيقة والمشاعر
+                    المختلفة. وفيها تتجاور الكلمة الموجزة والعبارة
+                    البليغة والصورة الأدبية المدهشة.
+                </p>
+
+                <div class="beauty-grid">
+                    <div class="beauty-item">
+                        <span>✧</span>
+                        <h4>ثراء المفردات</h4>
+                        <p>تنوع الألفاظ وتعدد طرق التعبير عن المعنى.</p>
+                    </div>
+
+                    <div class="beauty-item">
+                        <span>❖</span>
+                        <h4>جمال البلاغة</h4>
+                        <p>التشبيه والاستعارة والكناية والصور الفنية.</p>
+                    </div>
+
+                    <div class="beauty-item">
+                        <span>۞</span>
+                        <h4>موسيقى الشعر</h4>
+                        <p>الأوزان والقوافي والإيقاع الذي يطرب الأذن.</p>
+                    </div>
+
+                    <div class="beauty-item">
+                        <span>✦</span>
+                        <h4>دقة التعبير</h4>
+                        <p>القدرة على إيصال المعاني بوضوح وجمال.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="story-chapter">
+            <div class="story-number">06</div>
+            <div class="story-chapter-content">
+                <span class="story-label">فن الحرف</span>
+                <h3>الخط العربي.. حين تصبح الحروف فنًا</h3>
+                <p>
+                    لم تكن الكتابة العربية مجرد وسيلة لتدوين الكلمات،
+                    بل تحولت إلى فن بصري يجمع بين التناسق والجمال
+                    والإبداع. فزيّنت الخطوط العربية المساجد والمخطوطات
+                    والقصور والكتب.
+                </p>
+
+                <div class="calligraphy-grid">
+                    <div class="calligraphy-item">
+                        <span class="calligraphy-symbol">النسخ</span>
+                        <p>خط واضح اشتهر في كتابة الكتب والمصاحف.</p>
+                    </div>
+
+                    <div class="calligraphy-item">
+                        <span class="calligraphy-symbol">الثلث</span>
+                        <p>خط فني يتميز بجمال التكوين وتداخل الحروف.</p>
+                    </div>
+
+                    <div class="calligraphy-item">
+                        <span class="calligraphy-symbol">الكوفي</span>
+                        <p>خط ذو طابع هندسي، اشتهر في النقوش والزخارف.</p>
+                    </div>
+
+                    <div class="calligraphy-item">
+                        <span class="calligraphy-symbol">الديواني</span>
+                        <p>خط زخرفي ارتبط بالمراسلات والكتابات الرسمية.</p>
+                    </div>
+
+                    <div class="calligraphy-item">
+                        <span class="calligraphy-symbol">الرقعة</span>
+                        <p>خط عملي سريع شاع في الكتابة اليومية.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="story-chapter">
+            <div class="story-number">07</div>
+            <div class="story-chapter-content">
+                <span class="story-label">العربية اليوم</span>
+                <h3>لغةٌ تعيش الحاضر وتتطلع إلى المستقبل</h3>
+                <p>
+                    لا تعيش اللغة العربية في صفحات التاريخ وحدها،
+                    بل تحضر في حياتنا اليومية، وفي المدارس والجامعات
+                    ووسائل الإعلام والكتب والمنصات الرقمية.
+                </p>
+                <p>
+                    وهي إحدى اللغات الرسمية الست في الأمم المتحدة،
+                    ويحتفل العالم بيومها في الثامن عشر من ديسمبر
+                    من كل عام.
+                </p>
+                <p>
+                    ومع تطور التقنية والذكاء الاصطناعي، تزداد أهمية
+                    إنتاج محتوى عربي موثوق، وتطوير الأدوات الرقمية
+                    التي تجعل تعلم العربية واستخدامها أكثر سهولة
+                    وانتشارًا.
+                </p>
+                <div class="story-highlight">
+                    <strong>العربية ليست ماضيًا نتذكره فقط،</strong>
+                    بل لغةٌ نكتب بها حاضرنا ونشارك بها في صناعة المستقبل.
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="story-ending">
+        <div class="story-ending-symbol">ض</div>
+        <span class="story-label">رسالة إلى كل محب للعربية</span>
+        <h3>لغتنا أمانة.. وجمالها مسؤوليتنا</h3>
+        <p>
+            لغتنا العربية كنزٌ من المعرفة والجمال، ورثناه من أجيالٍ
+            كتبت وأبدعت وأخلصت لحروفها. والمحافظة عليها لا تكون
+            بالاعتزاز بها وحده، بل بقراءتها والكتابة بها وإثراء
+            محتواها واستخدامها في العلم والحياة.
+        </p>
+        <p class="story-final-quote">
+            «بالعربية نعبّر عن هويتنا، وبالعلم نرتقي بها،
+            وبالإبداع نمنحها وهجًا لا ينطفئ».
+        </p>
+    </div>
+
+</section>
+
+        <section class="page content-section" id="poetry">
+
+            <div class="section-heading">
+                <span class="eyebrow">من ذاكرة الأدب العربي</span>
+                <h2>ديوان الشعر</h2>
+                <p>بين أبيات الشعر تسكن الحكايات، وفي القوافي تحفظ الذاكرة جمالها.</p>
+            </div>
+
+            <div class="poem-library">
+
+                <article class="poem-card">
+                    <div class="poem-card-decoration">۞</div>
+                    <span class="poem-era">العصر العباسي</span>
+                    <h3>الخيل والليل والبيداءُ تعرفني</h3>
+                    <p class="poem-author">أبو الطيب المتنبي</p>
+
+                    <div class="poem-card-meta">
+                        <span>38 بيتًا</span>
+                        <span>شعر عربي كلاسيكي</span>
+                    </div>
+
+                    <button class="primary-button" id="openMutanabi">
+                        افتح القصيدة ←
+                    </button>
+                </article>
+
+            </div>
+
+            <div id="poemReader" class="poem-reader" hidden>
+
+                <button class="back-button" id="backToLibrary">
+                    → العودة إلى الديوان
+                </button>
+
+                <article class="manuscript">
+                    <div class="manuscript-frame">
+
+                        <div class="manuscript-ornament">۞</div>
+
+                        <span class="eyebrow">ديوان العصر العباسي</span>
+
+                        <h2 class="poem-title">
+                            الخيل والليل والبيداءُ تعرفني
+                        </h2>
+
+                        <div class="poet-profile">
+                            <span class="poet-symbol">أبو الطيب</span>
+                            <div>
+                                <h3>المتنبي</h3>
+                                <p>شاعر عباسي</p>
+                            </div>
+                            <span class="era-label">العصر العباسي</span>
+                        </div>
+
+                        <div class="poem-toolbar">
+                            <button id="toggleDiacritics">إزالة التشكيل</button>
+                            <button id="favoritePoem">☆ إضافة للمفضلة</button>
+                            <button id="copyPoem">نسخ القصيدة</button>
+                            <button id="decreaseFont">A−</button>
+                            <button id="increaseFont">A+</button>
+                            <button id="sharePoem">مشاركة</button>
+                        </div>
+
+                        <div class="verse-count">
+                            38 بيتًا من روائع الشعر العربي
+                        </div>
+
+                        <div id="poemVerses" class="poem-verses">
+                            <!-- تُعرض أبيات القصيدة هنا -->
+                        </div>
+
+                        <div class="manuscript-ornament">❖ ۞ ❖</div>
+
+                        <div class="poem-navigation">
+                            <button disabled>القصيدة السابقة</button>
+                            <button disabled>القصيدة التالية</button>
+                        </div>
+
+                        <div class="poem-explanation">
+
+                            <button
+                                id="explanationToggle"
+                                class="explanation-heading"
+                                aria-expanded="false"
+                                aria-controls="explanationContent"
+                            >
+                                <span>✧ رحلة في معاني القصيدة</span>
+                                <span id="explanationArrow">＋</span>
+                            </button>
+
+                            <div id="explanationContent" hidden>
+
+                                <div class="analysis-intro">
+                                    <span class="analysis-label">قراءة أدبية</span>
+                                    <h3>شرح وتحليل قصيدة «واحرّ قلباه»</h3>
+                                    <p>
+                                        تقوم القصيدة على عتاب المتنبي لسيف الدولة الحمداني،
+                                        وتمتزج فيها حرارة المحبة بألم الجفاء، ثم ينتقل الشاعر
+                                        إلى الفخر بنفسه وبشعره وفروسيته، ويختم بمعاني الوفاء
+                                        والفراق والحكمة.
+                                    </p>
+                                </div>
+
+                                <div class="explanation-part">
+                                    <h3>أولًا: الفكرة العامة</h3>
+                                    <p>
+                                        يصوّر المتنبي ألم الشاعر حين يحب شخصًا ويخلص له،
+                                        لكنه يشعر أن هذا الحب لا يُقابل بالتقدير نفسه.
+                                        لذلك يعاتب سيف الدولة، ويطلب منه أن ينصفه وألا
+                                        يصدّق الوشاة، ثم يذكّره بمكانة الشاعر وقيمته.
+                                    </p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت الأول</span>
+                                    <p class="poem-quote">«واحَرَّ قلباهُ مِمَّن قلبُهُ شَبِمُ»</p>
+                                    <p><strong>المعنى:</strong> يتألم الشاعر من شدة حبه، بينما يرى أن قلب من يعاتبه بارد لا يبادله حرارة الشعور.</p>
+                                    <p><strong>التحليل:</strong> يبدأ القصيدة بانفعال قوي يكشف التناقض بين عاطفة الشاعر وعاطفة الطرف الآخر.</p>
+                                    <p><strong>الجمال الفني:</strong> مقابلة بين «حرّ» و«شبم» تبرز التباين بين حرارة الحب وبرودة المشاعر.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت الثاني</span>
+                                    <p class="poem-quote">«مالي أُكَتِّمُ حُبًّا قد بَرَى جسدي»</p>
+                                    <p><strong>المعنى:</strong> يتساءل الشاعر عن سبب إخفائه حبًّا أضعفه وأتعبه.</p>
+                                    <p><strong>التحليل:</strong> يكشف البيت أن العاطفة لم تعد أمرًا خفيًّا؛ فقد ظهر أثرها في حال الشاعر وجسده.</p>
+                                    <p><strong>الجمال الفني:</strong> في التعبير «برى جسدي» تصوير لقوة أثر الحب حتى بدا كأنه ينحل الجسد.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت الثالث</span>
+                                    <p class="poem-quote">«إن كان يجمعُنا حبٌّ لِغُرَّتِهِ»</p>
+                                    <p><strong>المعنى:</strong> يشير الشاعر إلى رابطة المحبة التي تجمعه بالممدوح وما يراه فيه من صفات ومكانة.</p>
+                                    <p><strong>التحليل:</strong> يذكّر المتنبي بأن العلاقة بينهما قائمة على المودة والتقدير، لا على المصلحة وحدها.</p>
+                                    <p><strong>ملاحظة:</strong> يُفهم البيت ضمن سياقه الكامل؛ فلا يُفصل شطره عن بقية البيت عند الشرح.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت الرابع</span>
+                                    <p class="poem-quote">«يا أعدلَ الناسِ إلّا في معاملتي»</p>
+                                    <p><strong>المعنى:</strong> يخاطب سيف الدولة، فيمدحه بالعدل ثم يستثني معاملته هو من ذلك العدل.</p>
+                                    <p><strong>التحليل:</strong> يجمع الشاعر بين المدح والعتاب في عبارة واحدة؛ فهو لا ينكر فضائل الممدوح، لكنه يطالبه بأن ينصفه.</p>
+                                    <p><strong>الجمال الفني:</strong> أسلوب النداء والاستثناء يمنحان البيت نبرة عتاب مباشرة وقوية.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت الخامس</span>
+                                    <p class="poem-quote">«أُعيذُها نظراتٍ منك صائبةً»</p>
+                                    <p><strong>المعنى:</strong> يستعيذ الشاعر من نظرات أو أحكام تصدر عن الممدوح فتخطئ حقيقة أمره.</p>
+                                    <p><strong>التحليل:</strong> يتمنى أن تكون نظرة سيف الدولة إليه قائمة على التثبت والإنصاف، لا على الظنون وما ينقله الآخرون.</p>
+                                    <p><strong>الجمال الفني:</strong> اختيار لفظ «صائبة» يستحضر صورة الإصابة والدقة في الحكم.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت السادس</span>
+                                    <p class="poem-quote">«وما انتفاعُ أخي الدنيا بناظرهِ»</p>
+                                    <p><strong>المعنى:</strong> يلفت الشاعر إلى أن امتلاك البصر لا يكفي إذا لم يصحبه فهم وبصيرة.</p>
+                                    <p><strong>التحليل:</strong> يميز البيت بين الرؤية بالعين وإدراك الحقيقة بالعقل؛ فقد يرى الإنسان الأشياء ولا يحسن فهمها.</p>
+                                    <p><strong>الجمال الفني:</strong> يحمل البيت معنى حكميًّا يتجاوز موقف العتاب إلى تأمل عام في قيمة البصيرة.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت السابع</span>
+                                    <p class="poem-quote">«أنا الذي نظرَ الأعمى إلى أدبي»</p>
+                                    <p><strong>المعنى:</strong> يفتخر المتنبي بشعره، ويبالغ في وصف شهرته حتى يجعل أدبه كأنه يُرى بالبصيرة لا بالعين.</p>
+                                    <p><strong>التحليل:</strong> ينتقل من موقف الشكوى إلى تأكيد مكانته الأدبية وثقته بموهبته.</p>
+                                    <p><strong>الجمال الفني:</strong> مبالغة فنية تقوم على المفارقة بين الأعمى والرؤية، وتدل على انتشار أثر شعره.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت الثامن</span>
+                                    <p class="poem-quote">«الخيلُ والليلُ والبيداءُ تعرفني»</p>
+                                    <p><strong>المعنى:</strong> يعلن الشاعر أن ميادين الفروسية والسفر والصحراء تعرفه لكثرة خبرته بها.</p>
+                                    <p><strong>التحليل:</strong> يجمع المتنبي بين الشجاعة والأدب، ويقدم نفسه صاحب تجربة في ميادين الحياة والحرب والرحلة.</p>
+                                    <p><strong>الجمال الفني:</strong> تشخيص؛ إذ جعل الخيل والليل والبيداء كأنها كائنات تعرفه وتشهد له.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت التاسع</span>
+                                    <p class="poem-quote">«يا من يعزُّ علينا أن نفارقهم»</p>
+                                    <p><strong>المعنى:</strong> يخاطب الشاعر أناسًا يصعب عليه فراقهم لما لهم من مكانة في نفسه.</p>
+                                    <p><strong>التحليل:</strong> يظهر في البيت جانب وجداني رقيق؛ فالفراق مؤلم حين تكون العلاقة قائمة على المحبة والوفاء.</p>
+                                    <p><strong>الجمال الفني:</strong> أسلوب النداء يقرّب المخاطَبين من وجدان الشاعر ويبرز شدة تعلقه بهم.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت العاشر</span>
+                                    <p class="poem-quote">«إذا ترحَّلتَ عن قومٍ وقد قَدَروا»</p>
+                                    <p><strong>المعنى:</strong> يتناول الشاعر الرحيل عن قوم لم يعرفوا قيمة من بينهم أو لم يحسنوا معاملته.</p>
+                                    <p><strong>التحليل:</strong> يرتبط الرحيل هنا بالكرامة؛ فالإنسان لا يكتفي بالبقاء في مكان لا يجد فيه التقدير.</p>
+                                    <p><strong>الدلالة:</strong> يبرز البيت قيمة حفظ الكرامة ومراجعة العلاقات حين يغيب الوفاء.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت الحادي عشر</span>
+                                    <p class="poem-quote">«شرُّ البلادِ مكانٌ لا صديقَ به»</p>
+                                    <p><strong>المعنى:</strong> أسوأ الأماكن في نظر الشاعر هو المكان الذي يخلو من الصديق الصادق.</p>
+                                    <p><strong>التحليل:</strong> يؤكد المتنبي أن قيمة المكان لا تُقاس بجماله وحده، بل بمن يسكنه وبما يجده الإنسان فيه من مودة.</p>
+                                    <p><strong>الجمال الفني:</strong> صياغة حكميّة موجزة تجعل معنى الصداقة قاعدة عامة قابلة للتأمل.</p>
+                                </div>
+
+                                <div class="analysis-card">
+                                    <span class="analysis-label">البيت الثاني عشر</span>
+                                    <p class="poem-quote">«هذا عتابُكَ إلّا أنَّهُ مِقَةٌ»</p>
+                                    <p><strong>المعنى:</strong> يوضح الشاعر أن عتابه نابع من المحبة والمودة، لا من الكراهية أو الرغبة في القطيعة.</p>
+                                    <p><strong>التحليل:</strong> يختم موقفه بتأكيد أن العتاب دليل اهتمام؛ فالإنسان لا يعاتب غالبًا إلا من يعنيه أمره.</p>
+                                    <p><strong>الجمال الفني:</strong> يجمع البيت بين العتاب والمحبة في صورة تكشف جوهر العلاقة التي يتحدث عنها الشاعر.</p>
+                                </div>
+
+                                <div class="explanation-part">
+                                    <h3>ثانيًا: الغرض الشعري</h3>
+                                    <ul>
+                                        <li><strong>العتاب:</strong> وهو الغرض الرئيس، إذ يلوم المتنبي سيف الدولة بسبب ما شعر به من جفاء أو تغير في المعاملة.</li>
+                                        <li><strong>الفخر:</strong> يعتز الشاعر بشعره وشجاعته ومكانته بين الناس.</li>
+                                        <li><strong>الحكمة:</strong> تظهر في حديثه عن الصداقة والوفاء والكرامة والبصيرة.</li>
+                                        <li><strong>المدح:</strong> يذكر صفات سيف الدولة ومكانته، مع بقاء نبرة العتاب واضحة.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="explanation-part">
+                                    <h3>ثالثًا: العاطفة في القصيدة</h3>
+                                    <p>
+                                        تتنوع العاطفة بين الألم والشكوى والاعتزاز بالنفس والوفاء.
+                                        ويظهر التوتر العاطفي في الانتقال من حرارة العتاب إلى قوة الفخر،
+                                        ثم العودة إلى نبرة الحزن على الفراق.
+                                    </p>
+                                </div>
+
+                                <div class="explanation-part">
+                                    <h3>رابعًا: أبرز الصور والأساليب البلاغية</h3>
+                                    <ul>
+                                        <li><strong>«واحَرَّ قلباه»:</strong> تعبير انفعالي يصور شدة الألم النفسي.</li>
+                                        <li><strong>«قلبه شبم»:</strong> تصوير لبرود المشاعر، ويقابله وصف قلب الشاعر بالحرارة.</li>
+                                        <li><strong>«أنا الذي نظر الأعمى إلى أدبي»:</strong> مبالغة تفيد شهرة الشعر وقوة أثره.</li>
+                                        <li><strong>«الخيل والليل والبيداء تعرفني»:</strong> تشخيص لعناصر الطبيعة، إذ منحها الشاعر صفة المعرفة.</li>
+                                        <li><strong>النداء والاستفهام:</strong> أسلوبان يساهمان في إظهار الانفعال والعتاب والتأمل.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="explanation-part">
+                                    <h3>خامسًا: ملامح شخصية المتنبي</h3>
+                                    <ul>
+                                        <li>قوي الاعتزاز بنفسه وبموهبته الشعرية.</li>
+                                        <li>صريح في التعبير عن مشاعره، ولا يخفي عتابه.</li>
+                                        <li>يقدّر الوفاء والصداقة وحفظ المكانة.</li>
+                                        <li>يمزج بين الحس العاطفي وروح الفخر والحكمة.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="explanation-part">
+                                    <h3>سادسًا: أثر العصر العباسي</h3>
+                                    <p>
+                                        تنتمي القصيدة إلى بيئة العصر العباسي التي ازدهر فيها الشعر
+                                        ومجالس الأدب والرعاية السياسية للشعراء. ويظهر في النص الاهتمام
+                                        بالمكانة الاجتماعية، والمدح، والفخر، والوشاية، والعلاقات بين
+                                        الشاعر وأصحاب السلطة.
+                                    </p>
+                                </div>
+
+                                <div class="explanation-part">
+                                    <h3>سابعًا: معاني مفردات</h3>
+                                    <dl class="vocabulary">
+                                        <dt>شَبِم</dt><dd>بارد.</dd>
+                                        <dt>بَرَى جسدي</dt><dd>أضعف جسدي وأنحله.</dd>
+                                        <dt>الغُرّة</dt><dd>مقدمة الشيء، وتأتي للوجه المشرق.</dd>
+                                        <dt>الشِّيَم</dt><dd>الأخلاق والطباع.</dd>
+                                        <dt>المُهجة</dt><dd>الروح أو خالص النفس.</dd>
+                                        <dt>النَّوى</dt><dd>البعد والفراق.</dd>
+                                        <dt>البيداء</dt><dd>الصحراء الواسعة.</dd>
+                                        <dt>المِقَة</dt><dd>المحبة والمودة.</dd>
+                                    </dl>
+                                </div>
+
+                                <div class="analysis-conclusion">
+                                    <h3>الخلاصة</h3>
+                                    <p>
+                                        تكشف القصيدة عن شاعر يجمع بين رقة العاطفة وقوة الشخصية؛
+                                        فهو محبٌّ يعاتب، وفارسٌ يفخر، وحكيمٌ يتأمل معنى الصداقة والوفاء.
+                                        وتكمن قوتها في صدق الانفعال، وجزالة الألفاظ، وتنوع الصور
+                                        والأساليب، والانتقال المتوازن بين العتاب والفخر والحكمة.
+                                    </p>
+                                </div>
+
+                                <p class="editorial-note">
+                                    تنبيه علمي: الشروح هنا قراءة تعليمية لأبيات مختارة من القصيدة.
+                                    وقد تختلف بعض الألفاظ وترتيب الأبيات بين روايات الديوان؛ لذلك
+                                    ينبغي مطابقة الاقتباسات مع النص المعتمد في الديوان قبل النشر النهائي.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="manuscript-ornament">۞</div>
+
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        
+
+
+      
+<section class="page content-section" id="art">
+
+    <div class="section-heading">
+        <span class="eyebrow">استوديو الإبداع العربي</span>
+        <h2>مرسم الحروف</h2>
+        <p>حوّلي كلماتك إلى لوحات فنية تجمع جمال الخط العربي وروعة الزخرفة.</p>
+    </div>
+
+    <div class="calligraphy-studio" dir="rtl">
+
+        <div class="studio-topbar">
+            <div>
+                <span class="studio-status"></span>
+                <strong>استوديو الإبداع</strong>
+                <small>مساحة حرة لفنون الحروف</small>
+            </div>
+
+            <div class="studio-actions">
+                <button id="artUndo">↶ تراجع</button>
+                <button id="artRedo">↷ إعادة</button>
+                <button id="artReset">مسح اللوحة</button>
+                <button id="artSave">حفظ</button>
+                <button id="artExport">تصدير PNG</button>
+            </div>
+        </div>
+
+        <div class="studio-layout">
+
+            <aside class="studio-sidebar">
+
+                <div class="studio-panel">
+                    <h3>✦ كتابة النصوص</h3>
+
+                    <label for="artInput">النص العربي</label>
+                    <textarea id="artInput" rows="3" placeholder="اكتبي نصك هنا...">وهج العربية</textarea>
+
+                    <button class="studio-main-button" id="artAddText">
+                        + إضافة النص إلى اللوحة
+                    </button>
+
+                    <label for="artFont">نوع الخط</label>
+                    <select id="artFont">
+                        <option value="Amiri">Amiri</option>
+                        <option value="Aref Ruqaa">Aref Ruqaa</option>
+                        <option value="Reem Kufi">Reem Kufi</option>
+                        <option value="Noto Naskh Arabic">Noto Naskh Arabic</option>
+                        <option value="Cairo">Cairo</option>
+                        <option value="Tajawal">Tajawal</option>
+                    </select>
+
+                    <label for="artFontSize">حجم الخط</label>
+                    <input id="artFontSize" type="range" min="20" max="120" value="48">
+
+                    <label for="artTextColor">لون النص</label>
+                    <input id="artTextColor" type="color" value="#e5cc91">
+
+                    <label for="artAlign">محاذاة النص</label>
+                    <select id="artAlign">
+                        <option value="center">وسط</option>
+                        <option value="right">يمين</option>
+                        <option value="left">يسار</option>
+                    </select>
+
+                    <div class="studio-swatches">
+                        <button type="button" data-art-color="#123d32" style="background:#123d32" aria-label="أخضر"></button>
+                        <button type="button" data-art-color="#c5a15b" style="background:#c5a15b" aria-label="ذهبي"></button>
+                        <button type="button" data-art-color="#604331" style="background:#604331" aria-label="بني"></button>
+                        <button type="button" data-art-color="#f2e5c4" style="background:#f2e5c4" aria-label="عاجي"></button>
+                        <button type="button" data-art-color="#8c3345" style="background:#8c3345" aria-label="خمري"></button>
+                    </div>
+                </div>
+
+                <div class="studio-panel">
+                    <h3>❖ خلفية اللوحة</h3>
+
+                    <label for="artBackground">اختاري الخلفية</label>
+                    <select id="artBackground">
+                        <option value="green">الأخضر الزمردي</option>
+                        <option value="ivory">العاجي</option>
+                        <option value="gold">الذهبي التراثي</option>
+                        <option value="brown">البني</option>
+                        <option value="dark">الداكن</option>
+                        <option value="transparent">شفاف</option>
+                    </select>
+                </div>
+
+                <div class="studio-panel">
+                    <h3>❀ مكتبة الزخارف</h3>
+
+                    <div class="ornament-library">
+                        <button type="button" data-ornament="۞">۞<small>هندسي</small></button>
+                        <button type="button" data-ornament="❁">❁<small>زهري</small></button>
+                        <button type="button" data-ornament="✧">✧<small>نجمي</small></button>
+                        <button type="button" data-ornament="☾">☾<small>هلال</small></button>
+                        <button type="button" data-ornament="❦">❦<small>نباتي</small></button>
+                        <button type="button" data-ornament="༺">༺<small>إطار</small></button>
+                        <button type="button" data-ornament="✺">✺<small>شمسي</small></button>
+                        <button type="button" data-ornament="﴾">﴾<small>قوسي</small></button>
+                    </div>
+
+                    <label for="artElementColor">لون الزخرفة</label>
+                    <input id="artElementColor" type="color" value="#c5a15b">
+
+                    <label for="artElementSize">حجم العنصر</label>
+                    <input id="artElementSize" type="range" min="20" max="150" value="65">
+
+                    <label for="artRotation">زاوية الدوران</label>
+                    <input id="artRotation" type="range" min="-180" max="180" value="0">
+                </div>
+
+                <div class="studio-panel">
+                    <h3>◈ إدارة العناصر</h3>
+
+                    <div class="studio-element-actions">
+                        <button id="artBringFront">إحضار للأمام</button>
+                        <button id="artSendBack">إرسال للخلف</button>
+                        <button id="artDuplicate">نسخ العنصر</button>
+                        <button id="artDelete">حذف العنصر</button>
+                    </div>
+
+                    <h3 style="margin-top:20px">طبقات التصميم</h3>
+                    <div id="artLayers" class="studio-layers">
+                        <p>لا توجد عناصر بعد.</p>
+                    </div>
+                </div>
+
+            </aside>
+
+            <div class="studio-workspace">
+
+                <div class="workspace-toolbar">
+                    <strong>مساحة التصميم</strong>
+
+                    <div>
+                        <button id="artZoomOut">−</button>
+                        <span id="artZoomValue">100%</span>
+                        <button id="artZoomIn">+</button>
+                    </div>
+                </div>
+
+                <div class="art-canvas-wrapper">
+                    <svg id="artCanvas"
+                         xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 900 600"
+                         role="img"
+                         aria-label="مساحة تصميم الخط العربي">
+
+                        <rect id="artCanvasBackground"
+                              x="0" y="0"
+                              width="900" height="600"
+                              fill="#123d32"/>
+
+                        <g id="artCanvasElements"></g>
+                    </svg>
+                </div>
+
+                <div class="studio-templates">
+                    <h3>قوالب جاهزة</h3>
+
+                    <div>
+                        <button data-template="name">قالب الهوية</button>
+                        <button data-template="quote">قالب الاقتباس</button>
+                        <button data-template="poem">قالب الشعر</button>
+                        <button data-template="greeting">قالب الترحيب</button>
+                        <button data-template="heritage">قالب التراث</button>
+                        <button data-template="arabic">قالب العربية</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="studio-gallery">
+            <h3>معرض لوحاتي</h3>
+            <div id="artGallery">
+                <p>ستظهر لوحاتك المحفوظة هنا.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+</main>
+
+
+    <footer>
+        <div class="footer-symbol">۞</div>
+        <h2>وهج العربية</h2>
+        <p>لغتنا هويتنا، وحروفها حكايتنا.</p>
+        <small>احتفاءً باليوم العالمي للغة العربية</small>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
