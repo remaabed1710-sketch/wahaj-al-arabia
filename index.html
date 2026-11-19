@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+<link rel="manifest" href="./manifest.json">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -960,5 +961,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(() => console.log("تم تجهيز وهج العربية كتطبيق 🌿"))
+            .catch(error => console.error("خطأ في تسجيل التطبيق:", error));
+    });
+}
+</script>
 </body>
 </html>
