@@ -1,0 +1,26 @@
+
+{
+  "name": "وهج العربية",
+  "short_name": "وهج العربية",
+  "description": "رحلة تفاعلية للاحتفاء بجمال اللغة العربية",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf7ef",
+  "theme_color": "#123d32",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
